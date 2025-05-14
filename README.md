@@ -1,12 +1,50 @@
-# React + Vite
+# 💬 Basic Chat App – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the frontend of the **Basic Chat App** – a simple, clean real-time one-to-one chat application built using **React**, **Tailwind CSS**, and **Socket.IO**.
 
-Currently, two official plugins are available:
+🟢 **Live Demo:**  
+👉 [Click here to try it out]((https://chatkk.netlify.app/))
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📡 **Backend API:**  
+This app connects to a Node.js backend deployed at:  
+[https://chatbackend-rnjl.onrender.com](https://chatbackend-rnjl.onrender.com)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ What You Can Do
+
+- ✅ Sign up and log in
+- 🧑‍💻 Start chatting with any registered user
+- 📤 Send and receive messages instantly in real-time
+- 🟢 See if the other user is online or offline
+- ✍️ Get a “user is typing...” notification
+- 🔔 Get clean notifications with React Toastify
+
+Whether you're testing, learning, or building a foundation for your own messaging app, this frontend is ready to go.
+
+---
+
+## 🛠 Technologies Used
+
+- **React** – Frontend library
+- **Tailwind CSS** – Utility-first styling
+- **Socket.IO** – Real-time communication
+- **React Toastify** – Clean alert messages
+- **Axios** – API communication
+
+---
+
+## 🚀 How to Run It Locally
+
+First, make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
+
+```bash
+# Clone the full project (frontend + backend)
+git clone https://github.com/YOUR_USERNAME/basic-chat-app.git
+cd basic-chat-app/frontend
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
