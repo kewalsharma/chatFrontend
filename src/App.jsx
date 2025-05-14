@@ -18,6 +18,21 @@ function App() {
   const [mode, setMode] = useState("login"); // or 'signup'
 
   useEffect(() => {
+    const savedUser = localStorage.getItem("chatUser");
+    if (savedUser) {
+      const parsed = JSON.parse(savedUser);
+      axios
+        .get(`https://chatbackend-rnjl.onrender.com/status/${parsed.username}`)
+        .then((res) => {
+          setUsername(parsed.username);
+          socket.emit("register", parsed.username);
+          setRegistered(true);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
+  useEffect(() => {
     socket.on("receive_message", ({ from, message }) => {
       setChat((prev) => [...prev, { from, message }]);
     });
@@ -102,7 +117,7 @@ function App() {
             <input
               className="w-full border border-gray-300 rounded px-3 py-2 mb-2"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value.toLowerCase())}
               placeholder="Username"
             />
             <input
@@ -116,6 +131,7 @@ function App() {
               onClick={async () => {
                 try {
                   const endpoint = mode === "login" ? "/login" : "/signup";
+
                   const res = await axios.post(
                     `https://chatbackend-rnjl.onrender.com${endpoint}`,
                     {
@@ -126,6 +142,10 @@ function App() {
                   socket.emit("register", username);
                   toast.success(res.data.message);
                   setRegistered(true);
+                  localStorage.setItem(
+                    "chatUser",
+                    JSON.stringify({ username })
+                  );
                 } catch (err) {
                   toast.error(err.response?.data?.message || "Error");
                 }
@@ -135,7 +155,7 @@ function App() {
               {mode === "login" ? "Login" : "Sign Up"}
             </button>
             <p
-              className="text-sm text-gray-600 mt-2 text-center cursor-pointer"
+              className="text-sm text-gray-600 mt-2 text-center cursor-pointer hover:text-black"
               onClick={() => setMode(mode === "login" ? "signup" : "login")}
             >
               {mode === "login"
@@ -149,11 +169,21 @@ function App() {
               Chatting as {username}
             </h2>
 
+            <p
+              className="text-sm text-gray-600 mb-2 cursor-pointer text-right hover:text-black"
+              onClick={() => {
+                localStorage.removeItem("chatUser");
+                window.location.reload();
+              }}
+            >
+              Logout
+            </p>
+
             <input
               className="w-full border border-gray-300 rounded px-3 py-2 mb-2"
               placeholder="Recipient username"
               value={toUser}
-              onChange={(e) => setToUser(e.target.value)}
+              onChange={(e) => setToUser(e.target.value.toLowerCase())}
             />
 
             <p className="text-sm text-gray-600 mb-2">
