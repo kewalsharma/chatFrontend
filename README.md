@@ -3,7 +3,7 @@
 Welcome to the frontend of the **Basic Chat App** – a simple, clean real-time one-to-one chat application built using **React**, **Tailwind CSS**, and **Socket.IO**.
 
 🟢 **Live Demo:**  
-👉 [Click here to try it out]((https://chatkk.netlify.app/))
+👉 [Click here to try it out](https://chatkk.netlify.app)
 
 📡 **Backend API:**  
 This app connects to a Node.js backend deployed at:  
